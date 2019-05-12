@@ -1,0 +1,401 @@
+@prefix : <https://www.uni-paderborn.de/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@base <https://www.uni-paderborn.de/ontology/> .
+
+<https://www.uni-paderborn.de/ontology/> rdf:type owl:Ontology  ;
+							dc:title "SS Vocabulary"@en ; 
+                            dc:description "Vocabulary describing Concepts and Relationships of Schutzstaffel"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://www.uni-paderborn.de/ontology/NSDAPFunctionInfo
+:NSDAPFunctionInfo rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:domain :_SoldierNSDAPFunctionInfo ;
+                   rdfs:range :NSDAPFunction .
+
+
+###  https://www.uni-paderborn.de/ontology/SSRankInfo
+:SSRankInfo rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:domain :_SoldierSSRankInfo ;
+            rdfs:range :SSRank .
+
+
+###  https://www.uni-paderborn.de/ontology/decorationInfo
+:decorationInfo rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf owl:topObjectProperty ;
+                rdfs:domain :_SoldierDecorationInfo ;
+                rdfs:range :Decoration .
+
+
+###  https://www.uni-paderborn.de/ontology/governmentFunctionInfo
+:governmentFunctionInfo rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf owl:topObjectProperty ;
+                        rdfs:domain :_SoldierGovernmentFunctionInfo ;
+                        rdfs:range :GovernmentFunction .
+
+
+###  https://www.uni-paderborn.de/ontology/hasDecoration
+:hasDecoration rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :Soldier ;
+               rdfs:range :_SoldierDecorationInfo ;
+               rdfs:label "hasDecoration"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/hasDischargeInfo
+:hasDischargeInfo rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Soldier ;
+                  rdfs:range :_SoldierDischargeInfo .
+
+
+###  https://www.uni-paderborn.de/ontology/hasGovernmentFunction
+:hasGovernmentFunction rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdfs:domain :Soldier ;
+                       rdfs:range :_SoldierGovernmentFunctionInfo ;
+                       rdfs:label "hasGovernmentFunction"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/hasNSDAPFunction
+:hasNSDAPFunction rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain :Soldier ;
+                  rdfs:range :_SoldierNSDAPFunctionInfo ;
+                  rdfs:label "hasNSDAPFunction"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/hasRegiment
+:hasRegiment rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Soldier ;
+             rdfs:range :_SoldierRegimentInfo ;
+             rdfs:label "hasRegiment"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/hasSSRank
+:hasSSRank rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain :Soldier ;
+           rdfs:range :_SoldierSSRankInfo ;
+           rdfs:label "hasSSRank"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/regimentInfo
+:regimentInfo rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :_SoldierRegimentInfo ;
+              rdfs:range :Regiment .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://www.uni-paderborn.de/ontology/NSDAPNumber
+:NSDAPNumber rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Soldier ;
+             rdfs:range xsd:positiveInteger ;
+             rdfs:label "NSDAPNumber"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/abbreviation
+:abbreviation rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain owl:Thing ;
+              rdfs:range xsd:string ;
+              rdfs:label "abbreviation"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/applicableFrom
+:applicableFrom rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain owl:Thing ;
+                rdfs:range xsd:dateTime ;
+                rdfs:comment "Date on which a Soldier was given a Medal/Decoration. Related to Blank Nodes."^^xsd:string ;
+                rdfs:label "applicableFrom"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/birthDate
+:birthDate rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Soldier ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "Review: Date datatype not available"^^xsd:string ;
+           rdfs:label "birthDate"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/birthPlace
+:birthPlace rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Soldier ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Range can be converted into actual resource of the place"^^xsd:string ;
+            rdfs:label "birthPlace"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/deathDate
+:deathDate rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Soldier ;
+           rdfs:range xsd:dateTime ;
+           rdfs:comment "Review: Date datatype not available"^^xsd:string ;
+           rdfs:label "deathDate"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/deathPlace
+:deathPlace rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Soldier ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Range can be converted into actual resource of the place"^^xsd:string ;
+            rdfs:label "deathPlace"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:domain owl:Thing ;
+             rdfs:range xsd:string ;
+             rdfs:label "description"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/dischargeReason
+:dischargeReason rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf owl:topDataProperty ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Soldier ,
+                             :_SoldierDischargeInfo ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "dischargeReason"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/dischargedOn
+:dischargedOn rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain :Soldier ;
+              rdfs:range xsd:dateTime ;
+              rdfs:label "dischargedOn"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/durationEnd
+:durationEnd rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain owl:Thing ;
+             rdfs:range xsd:dateTime ;
+             rdfs:comment "Related to blank node SoldierDecoration"^^xsd:string ;
+             rdfs:label "durationEnd"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/durationStart
+:durationStart rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain owl:Thing ;
+               rdfs:range xsd:dateTime ;
+               rdfs:comment "Related to blank node SoldierDecoration"^^xsd:string ;
+               rdfs:label "durationStart"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/enrolledOn
+:enrolledOn rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Soldier ;
+            rdfs:range xsd:dateTime ;
+            rdfs:label "enrolledOn"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/enrollmentReason
+:enrollmentReason rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Soldier ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "enrollmentReason"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/firstName
+:firstName rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :Soldier ;
+           rdfs:range xsd:string ;
+           rdfs:label "firstName"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/hasTitle
+:hasTitle rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :Soldier ;
+          rdfs:range xsd:string ;
+          rdfs:label "hasTitle"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/id
+:id rdf:type owl:DatatypeProperty ;
+    rdfs:subPropertyOf owl:topDataProperty ;
+    rdf:type owl:FunctionalProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:label "id"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/information
+:information rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain owl:Thing ;
+             rdfs:range xsd:string ;
+             rdfs:label "information"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/internalInformation
+:internalInformation rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:domain owl:Thing ;
+                     rdfs:range xsd:string ;
+                     rdfs:label "internalInformation"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/lastName
+:lastName rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :Soldier ;
+          rdfs:range xsd:string ;
+          rdfs:label "lastName"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/membershipNumber
+:membershipNumber rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :Soldier ;
+                  rdfs:range xsd:positiveInteger ;
+                  rdfs:label "membershipNumber"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/membershipType
+:membershipType rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :Soldier ;
+                rdfs:range xsd:string ;
+                rdfs:comment "XML has no occurence of this column."^^xsd:string ;
+                rdfs:label "membershipType"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf owl:topDataProperty ;
+      rdfs:domain owl:Thing ;
+      rdfs:range xsd:string ;
+      rdfs:label "name"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/sortation
+:sortation rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:domain :SSRank ;
+           rdfs:range xsd:positiveInteger ;
+           rdfs:label "sortation"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://www.uni-paderborn.de/ontology/Decoration
+:Decoration rdf:type owl:Class ;
+            rdfs:subClassOf owl:Thing ;
+            rdfs:label "Decoration"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/GovernmentFunction
+:GovernmentFunction rdf:type owl:Class ;
+                    rdfs:subClassOf owl:Thing ;
+                    rdfs:label "GovernmentFunction"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/NSDAPFunction
+:NSDAPFunction rdf:type owl:Class ;
+               rdfs:subClassOf owl:Thing .
+
+
+###  https://www.uni-paderborn.de/ontology/Regiment
+:Regiment rdf:type owl:Class ;
+          rdfs:subClassOf owl:Thing ;
+          rdfs:label "Regiment"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/SSRank
+:SSRank rdf:type owl:Class ;
+        rdfs:subClassOf owl:Thing ;
+        rdfs:label "SSRank"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/Soldier
+:Soldier rdf:type owl:Class ;
+         rdfs:subClassOf owl:Thing ;
+         rdfs:label "Soldier"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierDecorationInfo
+:_SoldierDecorationInfo rdf:type owl:Class ;
+                        rdfs:subClassOf owl:Thing ;
+                        rdfs:label "_SoldierDecorationInfo"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierDischargeInfo
+:_SoldierDischargeInfo rdf:type owl:Class ;
+                       rdfs:subClassOf owl:Thing ;
+                       rdfs:label "_SoldierDischargeInfo"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierGovernmentFunctionInfo
+:_SoldierGovernmentFunctionInfo rdf:type owl:Class ;
+                                rdfs:subClassOf owl:Thing ;
+                                rdfs:label "_SoldierGovernmentFunctionInfo"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierNSDAPFunctionInfo
+:_SoldierNSDAPFunctionInfo rdf:type owl:Class ;
+                           rdfs:subClassOf owl:Thing ;
+                           rdfs:label "_SoldierNSDAPFunctionInfo"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierRegimentInfo
+:_SoldierRegimentInfo rdf:type owl:Class ;
+                      rdfs:subClassOf owl:Thing ;
+                      rdfs:label "_SoldierRegimentInfo"@en .
+
+
+###  https://www.uni-paderborn.de/ontology/_SoldierSSRankInfo
+:_SoldierSSRankInfo rdf:type owl:Class ;
+                    rdfs:subClassOf owl:Thing ;
+                    rdfs:label "_SoldierSSRankInfo"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
